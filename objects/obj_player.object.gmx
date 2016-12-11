@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// @description Insert description here
+            <string>/// Startup values
+is_dead = false;
+death_state = 0;
+
 h_speed = 0.0;
 v_speed = 0.0;
 
@@ -64,6 +67,8 @@ key_alt_run = 0;
 
 // Score and Upgrades
 money = 0;
+
+global.shake = 0; 
 </string>
           </argument>
         </arguments>
@@ -86,7 +91,39 @@ money = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// @description Insert description here
+            <string>/// Update code
+// Debug code
+if mouse_button = mb_left {
+    x = median(64, mouse_x, room_width - 64);
+    y = median(64, mouse_y, room_height - 64);
+}
+
+//for shaker 
+view_xview = 0; 
+view_yview = 0; 
+
+view_xview += random_range(-global.shake, global.shake);
+view_yview += random_range(-global.shake, global.shake); 
+global.shake *= 0.93; 
+
+// Load next room upon door hit
+if place_meeting(x, y, obj_end) {
+    if room_exists(room_next(room)) {
+        room = room_next(room);
+        x = obj_start.x;
+        y = obj_start.y;
+        room_goto_next();
+    }
+}
+
+// Money Tracker
+if place_meeting(x, y, obj_coin) {
+    with instance_place(x, y, obj_coin) {
+        instance_destroy();
+    }
+    money++;
+}
+
 if (controller_id == -1) {
     left_pressed = keyboard_check(key_left) || keyboard_check(key_alt_left);
     right_pressed = keyboard_check(key_right) || keyboard_check(key_alt_right);
@@ -99,12 +136,6 @@ if (controller_id == -1) {
     run_pressed = gamepad_button_check(controller_id, key_run);
 }
 var has_jumped = false;
-
-// Debug code
-if mouse_button = mb_left {
-    x = median(64, mouse_x, room_width - 64);
-    y = median(64, mouse_y, room_height - 64);
-}
 
 // Check if we should stick to the wall
 var ax = 0.0;
@@ -169,7 +200,6 @@ if key_run {
     h_speed = sign(h_speed) * min(abs(h_speed), max_speed);
 }
 
-
 // Updating
 var dy = round(v_speed);
 repeat(abs(dy)) {
@@ -209,24 +239,6 @@ if wall_stick_counter &gt; 0 {
 if !left_pressed &amp;&amp; !right_pressed &amp;&amp; place_meeting(x, y + 1, obj_block) {
     h_speed -= h_speed * drag;
 }
-
-// Load next room upon door hit
-if place_meeting(x, y, obj_end) {
-    if room_exists(room_next(room)) {
-        room = room_next(room);
-        x = obj_start.x;
-        y = obj_start.y;
-        room_goto_next();
-    }
-}
-
-// Money Tracker
-if place_meeting(x, y, obj_coin) {
-    with instance_place(x, y, obj_coin) {
-        instance_destroy();
-    }
-    money++;
-}
 </string>
           </argument>
         </arguments>
@@ -250,11 +262,22 @@ if place_meeting(x, y, obj_coin) {
           <argument>
             <kind>1</kind>
             <string>/// @description Insert description here
+///image_xscale = 1; 
 if abs(h_speed) &gt; 0
-    draw_sprite_ext(spr_player, 0, x, y, sign(h_speed), 1, 0, playercolour, 1);
-else 
+    draw_sprite_ext(spr_player, 0, x, y, sign(h_speed) , 1, 0, playercolour, 1);
+       /* if(is_dead == true) {
+            if (image_xscale &lt; 5){
+                image_xscale += 0.1;
+            } */
+else {
     draw_sprite_ext(spr_player, 0, x, y, 1, 1, 0, playercolour, 1);
 
+   /* if(is_dead == true) {
+            if (image_xscale &lt; 5){
+                image_xscale += 0.1;
+                } */ 
+            //}
+}
 </string>
           </argument>
         </arguments>

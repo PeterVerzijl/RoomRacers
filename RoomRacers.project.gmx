@@ -65,7 +65,6 @@
     <object>objects\obj_blood</object>
     <object>objects\obj_blood_controller</object>
     <object>objects\obj_BloodController</object>
-    <object>objects\obj_coin</object>
     <object>objects\obj_end</object>
     <object>objects\obj_player_ui</object>
     <object>objects\obj_spikes</object>

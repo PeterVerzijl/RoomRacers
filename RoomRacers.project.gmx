@@ -60,6 +60,7 @@
     <object>objects\obj_time_counter</object>
     <object>objects\obj_fullscreen</object>
     <object>objects\obj_trapdoor</object>
+    <object>objects\obj_hazards</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\title_screen</room>

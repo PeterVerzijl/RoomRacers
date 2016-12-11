@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// @description Insert description here
+            <string>/// Init variables
 h_speed = 0.0;
 v_speed = 0.0;
 
@@ -64,6 +64,8 @@ key_alt_run = 0;
 
 // Score and Upgrades
 money = 0;
+room_time = 0;
+cumulative_time = 0;
 </string>
           </argument>
         </arguments>
@@ -86,7 +88,7 @@ money = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// @description Insert description here
+            <string>/// All movement, collision and death code
 if (controller_id == -1) {
     left_pressed = keyboard_check(key_left) || keyboard_check(key_alt_left);
     right_pressed = keyboard_check(key_right) || keyboard_check(key_alt_right);
@@ -210,16 +212,6 @@ if !left_pressed &amp;&amp; !right_pressed &amp;&amp; place_meeting(x, y + 1, ob
     h_speed -= h_speed * drag;
 }
 
-// Load next room upon door hit
-if place_meeting(x, y, obj_end) {
-    if room_exists(room_next(room)) {
-        room = room_next(room);
-        x = obj_start.x;
-        y = obj_start.y;
-        room_goto_next();
-    }
-}
-
 // Money Tracker
 if place_meeting(x, y, obj_coin) {
     with instance_place(x, y, obj_coin) {
@@ -227,6 +219,37 @@ if place_meeting(x, y, obj_coin) {
     }
     money++;
 }
+
+//trapdoors
+if place_meeting(x, y, obj_trapdoor) {
+y = y+64; 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reset player to start position
+room_time = 0;
+x = obj_start.x;
+y = obj_start.y;
 </string>
           </argument>
         </arguments>
@@ -249,7 +272,7 @@ if place_meeting(x, y, obj_coin) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// @description Insert description here
+            <string>/// Draw player with correct color and orientation
 if abs(h_speed) &gt; 0
     draw_sprite_ext(spr_player, 0, x, y, sign(h_speed), 1, 0, playercolour, 1);
 else 

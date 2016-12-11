@@ -48,9 +48,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_colour(x,y,"Gratis Geld Speler 1: " + string(player_id.money), 
-                player_id.playercolour, player_id.playercolour, 
-                player_id.playercolour, player_id.playercolour, 1);
+            <string>var x_pos = x;
+var y_pos = y;
+
+var money_text = "Money 1: " + string(player_id.money);
+var time_text = "Total Time: " + string(player_id.cumulative_time);
+var t1h = string_height(money_text);
+var t2h = string_height(time_text);
+var max_width = max(string_width(money_text), string_width(time_text));
+
+draw_set_color(c_black);
+draw_rectangle(x_pos - 5, y_pos - 5, x_pos + max_width + 5, y_pos + t1h + t2h + 5, false);
+draw_set_color(player_id.playercolour);
+
+draw_text(x_pos, y_pos, money_text);
+y_pos += t1h;
+draw_text(x_pos, y_pos, time_text);
 </string>
           </argument>
         </arguments>

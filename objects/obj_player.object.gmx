@@ -143,11 +143,11 @@ is_hurt = false;
           <argument>
             <kind>1</kind>
             <string>/// Update code
-// Debug code
-if mouse_button = mb_left {
-    x = median(64, mouse_x, room_width - 64);
-    y = median(64, mouse_y, room_height - 64);
-}
+// Debug code, lets you place the players at will.
+//if mouse_button = mb_left {
+//    x = median(64, mouse_x, room_width - 64);
+//    y = median(64, mouse_y, room_height - 64);
+//}
 
 //for shaker 
 view_xview = 0; 
@@ -293,6 +293,33 @@ if wall_stick_counter &gt; 0 {
 
 if !left_pressed &amp;&amp; !right_pressed {
     h_speed -= h_speed * drag;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bullet">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if !is_hurt {
+    is_hurt = true;
+    alarm[0] = punish_duration;
+    global.shake = 10;
 }
 </string>
           </argument>

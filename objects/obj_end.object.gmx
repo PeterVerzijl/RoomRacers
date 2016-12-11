@@ -51,6 +51,25 @@ finished_players[] = 0;
             <kind>1</kind>
             <string>/// Goto next room
 if (room_exists(room_next(room))) {
+    var num_players = instance_number(obj_player);
+    players[] = 0;
+    for (p = 0; p &lt; num_players; p++) {
+        players[p] = instance_find(obj_player, p);
+        var player = players[p];
+        var has_finished = false;
+        for (fp = 0; fp &lt; num_finished_players; fp++) {
+            if (finished_players[fp] == player) {
+                has_finished = true;
+                break;
+            }
+        }
+        if !has_finished {
+            finished_players[num_finished_players++] = player;
+            player.room_time = (obj_time_counter.room_timer_s * 1000) + 
+                obj_time_counter.room_timer_ms;
+            player.cumulative_time += player.room_time;
+        }
+    }
     room_goto_next();
 }
 </string>

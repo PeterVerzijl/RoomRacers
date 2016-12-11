@@ -14,11 +14,11 @@
 var total_players = global.num_keyboard_players + global.num_gamepad_players;
 if (global.num_keyboard_players == 1) {
     var player_id = instance_create(obj_start.x, obj_start.y, obj_player);
-    var gui_id = instance_create(
-        40+(((window_get_width())/total_players)*(player_count)), 
-        window_get_height() - 40, obj_player_ui);
-    gui_id.player_id = player_id;
-    gui_id.persistent = true;
+//    var gui_id = instance_create(
+//        40+(((window_get_width())/total_players)*(player_count)), 
+//        window_get_height() - 40, obj_player_ui);
+//    gui_id.player_id = player_id;
+//    gui_id.persistent = true;
     player_id.persistent = true;
     player_id.controller_id = -1;
     player_id.key_left = vk_left;
@@ -34,11 +34,11 @@ if (global.num_keyboard_players == 1) {
 }
 for (controller_id = 0; controller_id &lt; global.num_gamepad_players; controller_id++) {
     var player_id = instance_create(obj_start.x, obj_start.y, obj_player);
-    var gui_id = instance_create(
-        40+(((window_get_width())/total_players)*(player_count)), 
-        window_get_height() - 40, obj_player_ui);
-    gui_id.persistent = true;
-    gui_id.player_id = player_id;
+//    var gui_id = instance_create(
+//        40+(((window_get_width())/total_players)*(player_count)), 
+//        window_get_height() - 40, obj_player_ui);
+//   gui_id.persistent = true;
+//   gui_id.player_id = player_id;
     player_id.persistent = true;
     player_id.controller_id = controller_id;
     player_id.key_left = gp_padl;

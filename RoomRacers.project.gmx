@@ -39,6 +39,8 @@
     <sprite>sprites\spr_spikes_down</sprite>
     <sprite>sprites\spr_spikes_left</sprite>
     <sprite>sprites\spr_spikes_right</sprite>
+    <sprite>sprites\spr_bullet</sprite>
+    <sprite>sprites\spr_cannon_mirror</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_title_screen</background>
@@ -65,15 +67,11 @@
     <object>objects\obj_ui_start</object>
     <object>objects\obj_ui_exit</object>
     <object>objects\obj_input_selector</object>
-    <object>objects\obj_blood</object>
-    <object>objects\obj_blood_controller</object>
-    <object>objects\obj_BloodController</object>
     <object>objects\obj_end</object>
     <object>objects\obj_player_ui</object>
     <object>objects\obj_spikes</object>
     <object>objects\obj_start</object>
     <object>objects\obj_time_counter</object>
-    <object>objects\obj_hazards</object>
     <object>objects\obj_trapdoor</object>
     <object>objects\obj_trapdoor_open</object>
     <object>objects\obj_trigger</object>
@@ -81,6 +79,8 @@
     <object>objects\obj_game_manager</object>
     <object>objects\obj_hazards</object>
     <object>objects\obj_highscore_drawer</object>
+    <object>objects\obj_bullet</object>
+    <object>objects\obj_cannon_mirror</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\title_screen</room>
@@ -88,6 +88,19 @@
     <room>rooms\level0</room>
     <room>rooms\level1</room>
     <room>rooms\level2</room>
+    <room>rooms\level3</room>
+    <room>rooms\level4</room>
+    <room>rooms\level5</room>
+    <room>rooms\level6</room>
+    <room>rooms\level7</room>
+    <room>rooms\level8</room>
+    <room>rooms\level9</room>
+    <room>rooms\level10</room>
+    <room>rooms\level11</room>
+    <room>rooms\level12</room>
+    <room>rooms\level13</room>
+    <room>rooms\level14</room>
+    <room>rooms\level15</room>
     <room>rooms\rm_highscore</room>
   </rooms>
   <help>

@@ -48,8 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button_released(0) &amp;&amp; place_meeting(mouse_x, mouse_y, self)) ||
-    keyboard_check_pressed(vk_enter) {
+            <string>if keyboard_check_pressed(vk_enter) {
     room_goto(lobby_room);
 }
 var num_gp = gamepad_get_device_count();
@@ -105,6 +104,29 @@ for (gp_id = 0; gp_id &lt; num_gp; gp_id++) {
           <argument>
             <kind>1</kind>
             <string>color = make_colour_rgb(50, 255, 50);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(lobby_room);
 </string>
           </argument>
         </arguments>

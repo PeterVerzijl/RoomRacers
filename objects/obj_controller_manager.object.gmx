@@ -175,8 +175,8 @@ for (input_index = 0; input_index &lt; array_length_1d(input_slots); input_index
     }   
 }
 if is_one_ready &amp;&amp; start_game {
-    if (room_exists(level0)) {
-        room_goto(level0);
+    if (room_exists(room_next(room))) {
+        room_goto(room_next(room));
     }
 }
 </string>

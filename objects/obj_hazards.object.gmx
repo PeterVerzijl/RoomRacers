@@ -25,9 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.x = obj_start.x;
-other.y = obj_start.y;
-global.shake = 30;
+            <string>sound_play(snd_hurt);
+global.shake = 10;
+sleep(1);
+other.is_hurt = true;
+other.alarm[0] = other.punish_duration;
 </string>
           </argument>
         </arguments>

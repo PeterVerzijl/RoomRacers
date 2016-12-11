@@ -39,7 +39,6 @@
     <sprite>sprites\spr_spikes_down</sprite>
     <sprite>sprites\spr_spikes_left</sprite>
     <sprite>sprites\spr_spikes_right</sprite>
-    <sprite>sprites\spr_trapdoor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_title_screen</background>
@@ -74,14 +73,12 @@
     <object>objects\obj_spikes</object>
     <object>objects\obj_start</object>
     <object>objects\obj_time_counter</object>
-    <object>objects\obj_fullscreen</object>
     <object>objects\obj_hazards</object>
     <object>objects\obj_trapdoor</object>
     <object>objects\obj_trapdoor_open</object>
     <object>objects\obj_trigger</object>
     <object>objects\obj_cannon</object>
     <object>objects\obj_game_manager</object>
-    <object>objects\obj_trapdoor</object>
     <object>objects\obj_hazards</object>
     <object>objects\obj_highscore_drawer</object>
   </objects>

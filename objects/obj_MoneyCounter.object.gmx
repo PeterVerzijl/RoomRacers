@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.moneyplayer1 = 0;
+            <string>player_id = 0; // Reference to player whom we are goint to display the score for.
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="122">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>window_set_fullscreen(true);
+            <string>draw_text_colour(x,y,"Gratis Geld Speler 1: " + string(player_id.money), 
+                player_id.playercolour, player_id.playercolour, 
+                player_id.playercolour, player_id.playercolour, 1);
 </string>
           </argument>
         </arguments>

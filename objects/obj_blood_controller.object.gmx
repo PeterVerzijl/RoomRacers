@@ -25,30 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.moneyplayer1 = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="122">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>window_set_fullscreen(true);
+            <string>if(mouse_check_button_pressed(mb_right)){ 
+
+repeat(200) instance_create(mouse_x, mouse_y, obj_blood);  
+
+}
 </string>
           </argument>
         </arguments>

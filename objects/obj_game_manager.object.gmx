@@ -50,17 +50,18 @@ background_music = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var audio = 0;
-var r = round(random_range(0, 2));
-audio_stop_all();
-show_debug_message(r);
-switch (r) {
-    case 0: audio = audio_play_sound(bgm_01, 1, true); break;
-    case 1: audio = audio_play_sound(bgm_02, 1, true); break;
-    case 2: audio = audio_play_sound(bgm_03, 1, true); break;
+            <string>if !music_paused {
+    var audio = 0;
+    var r = round(random_range(0, 2));
+    audio_stop_all();
+    switch (r) {
+        case 0: audio = audio_play_sound(bgm_01, 1, true); break;
+        case 1: audio = audio_play_sound(bgm_02, 1, true); break;
+        case 2: audio = audio_play_sound(bgm_03, 1, true); break;
+    }
+    audio_sound_set_track_position(audio,
+        random_range(0, audio_sound_length(audio)*0.9));
 }
-audio_sound_set_track_position(audio,
-    random_range(0, audio_sound_length(audio)*0.9));
 </string>
           </argument>
         </arguments>
@@ -110,7 +111,17 @@ window_set_fullscreen(!window_get_fullscreen());
             <string>/// Toggle the music
 if music_paused {
     music_paused = false;
-    audio_resume_all();
+    // Restart music
+    var audio = 0;
+    var r = round(random_range(0, 2));
+    audio_stop_all();
+    switch (r) {
+        case 0: audio = audio_play_sound(bgm_01, 1, true); break;
+        case 1: audio = audio_play_sound(bgm_02, 1, true); break;
+        case 2: audio = audio_play_sound(bgm_03, 1, true); break;
+    }
+    audio_sound_set_track_position(audio,
+        random_range(0, audio_sound_length(audio)*0.9));    
 } else {
     music_paused = true;
     audio_pause_all();

@@ -91,7 +91,7 @@ if (room_exists(room_next(room))) {
             alarm[0] = 15 * room_speed;
         }
         finished_players[num_finished_players++] = other;
-        other.room_time = obj_time_counter.room_timer_s + 
+        other.room_time = (obj_time_counter.room_timer_s * 1000) + 
             obj_time_counter.room_timer_ms;
         other.cumulative_time += other.room_time;
     }

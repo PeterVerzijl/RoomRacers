@@ -30,6 +30,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\find_next_control.gml</script>
+    <script>scripts\is_control_in_list.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>

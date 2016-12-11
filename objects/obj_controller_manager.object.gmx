@@ -85,7 +85,7 @@ for (var i = 0; i &lt; gp_num; i++;) {
 if keyboard_check_pressed(vk_enter) {
     // Get next available slot
     var control_index = find_next_control(input_slots);
-    if (control_index &gt;= 0) {
+    if (!is_control_in_list(input_slots, keyboard_input) &amp;&amp; control_index &gt;= 0) {
         input_slots[control_index] = keyboard_input;
         gui_id = input_selectors[control_index];
         gui_id.is_keyboard = true;
@@ -98,7 +98,7 @@ for (gp_id = 0; gp_id &lt; gp_num; gp_id++) {
         if gamepad_button_check_pressed(gp_id , gp_start) {
             // Get next available slot
             var control_index = find_next_control(input_slots);
-            if (control_index &gt;= 0) {
+            if (!is_control_in_list(input_slots, gp_id) &amp;&amp; control_index &gt;= 0) {
                 input_slots[control_index] = gp_id;
                 gui_id = input_selectors[control_index];
                 gui_id.is_gamepad = true;

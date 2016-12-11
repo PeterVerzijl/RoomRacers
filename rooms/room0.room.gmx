@@ -16,6 +16,7 @@ color_array[1] = c_red
 color_array[2] = c_yellow
 color_array[3] = c_blue
 color_array[4] = c_black
+global.player_count = 0;
 var total_players = global.num_keyboard_players + global.num_controller_players;
 if (global.num_keyboard_players == 1) {
     var player_id = instance_create(obj_start.x, obj_start.y, obj_player);
@@ -717,9 +718,6 @@ for (controller_id = 0; controller_id &lt; global.num_controller_players; contro
     <instance objName="obj_slope_steep_ld" x="1312" y="608" name="inst_F87FC376" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_slope_steep_ld" x="1152" y="608" name="inst_C2D4DAEB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_slope_steep_ld" x="992" y="608" name="inst_F45DD8BA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_end" x="96" y="128" name="inst_12AEFABB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_controller_manager" x="512" y="96" name="inst_CAB59E2F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_start" x="64" y="832" name="inst_DDC9B72F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_slope_rd" x="1280" y="32" name="inst_BFA64CB1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="&lt;undefined&gt;" x="288" y="832" name="inst_A9BDE727" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="&lt;undefined&gt;" x="416" y="832" name="inst_EF2086C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -792,6 +790,9 @@ for (controller_id = 0; controller_id &lt; global.num_controller_players; contro
     <instance objName="&lt;undefined&gt;" x="128" y="736" name="inst_E978C750" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="&lt;undefined&gt;" x="480" y="864" name="inst_B21BD289" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="&lt;undefined&gt;" x="256" y="320" name="inst_6195C833" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_end" x="96" y="128" name="inst_12AC2645" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_start" x="128" y="864" name="inst_248C574F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_controller_manager" x="192" y="64" name="inst_4D1E9D0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

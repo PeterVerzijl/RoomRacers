@@ -21,6 +21,9 @@
     <sprite>sprites\ui_keyboard</sprite>
     <sprite>sprites\spr_checkmark</sprite>
     <sprite>sprites\spr_input_select</sprite>
+    <sprite>sprites\spr_blood</sprite>
+    <sprite>sprites\spr_coin</sprite>
+    <sprite>sprites\spr_spikes</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_title_screen</background>
@@ -42,16 +45,23 @@
     <object>objects\obj_slope_steep_high_ld</object>
     <object>objects\obj_slope_steep_ld</object>
     <object>objects\obj_controller_manager</object>
-    <object>objects\obj_start</object>
-    <object>objects\obj_end</object>
     <object>objects\obj_ui_start</object>
     <object>objects\obj_ui_exit</object>
     <object>objects\obj_input_selector</object>
+    <object>objects\obj_blood</object>
+    <object>objects\obj_blood_controller</object>
+    <object>objects\obj_BloodController</object>
+    <object>objects\obj_coin</object>
+    <object>objects\obj_end</object>
+    <object>objects\obj_MoneyCounter</object>
+    <object>objects\obj_spikes</object>
+    <object>objects\obj_start</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room0</room>
     <room>rooms\title_screen</room>
     <room>rooms\lobby_room</room>
-    <room>rooms\room0</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

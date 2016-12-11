@@ -39,9 +39,9 @@ input_slots[1] = empty_input;
 input_slots[2] = empty_input;
 input_slots[3] = empty_input;
 
-global.num_players = 0;
-global.num_controller_players = 0;
-global.num_keyboard_players = 0;
+global.num_players = 2;
+global.num_controller_players = 1;
+global.num_keyboard_players = 1;
 
 
 // Getting all input options

@@ -59,10 +59,10 @@
     <object>objects\obj_hazards</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
     <room>rooms\title_screen</room>
     <room>rooms\lobby_room</room>
-    <room>rooms\room1</room>
+    <room>rooms\level0</room>
+    <room>rooms\level1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

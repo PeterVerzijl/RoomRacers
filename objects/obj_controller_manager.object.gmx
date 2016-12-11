@@ -26,6 +26,17 @@
           <argument>
             <kind>1</kind>
             <string>/// @description Insert description here
+// Define global variables
+global.color_array[] = 0;
+global.color_array[0] = c_green
+global.color_array[1] = c_red
+global.color_array[2] = c_yellow
+global.color_array[3] = c_blue
+
+global.num_players = 0;
+global.num_gamepad_players = 0;
+global.num_keyboard_players = 0;
+
 // Get all input selectors
 for (var i = 0; i &lt; instance_number(obj_input_selector); i++) {
    input_selectors[i] = instance_find(obj_input_selector, i);
@@ -38,11 +49,6 @@ input_slots[0] = empty_input;
 input_slots[1] = empty_input;
 input_slots[2] = empty_input;
 input_slots[3] = empty_input;
-
-global.num_players = 2;
-global.num_controller_players = 1;
-global.num_keyboard_players = 1;
-
 
 // Getting all input options
 show_debug_message("Checking for inputs...");
@@ -81,34 +87,58 @@ for (var i = 0; i &lt; gp_num; i++;) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if keyboard_check_pressed(vk_enter) {
-    // Get next available slot
-    var control_index = find_next_control(input_slots);
-    if (!is_control_in_list(input_slots, keyboard_input) &amp;&amp; control_index &gt;= 0) {
-        input_slots[control_index] = keyboard_input;
-        gui_id = input_selectors[control_index];
-        gui_id.is_keyboard = true;
-    } 
+            <string>if keyboard_check_pressed(vk_enter) {
+    var control_index = is_control_in_list(input_slots, keyboard_input);
+    if control_index &gt;= 0 {
+        // Set as ready
+        var gui_id = input_selectors[control_index];
+        if !gui_id.is_ready {
+            gui_id.is_ready = true;
+            global.num_keyboard_players++;
+        }
+    } else {
+        // Get next available slot
+        var control_index = find_next_control(input_slots);
+        if control_index &gt;= 0 {
+            input_slots[control_index] = keyboard_input;
+            gui_id = input_selectors[control_index];
+            gui_id.color = global.color_array[control_index];
+            gui_id.is_keyboard = true;
+        }
+    }
 }
+
 
 var gp_num = gamepad_get_device_count();
 for (gp_id = 0; gp_id &lt; gp_num; gp_id++) {
     if gamepad_is_connected(gp_id) {
         if gamepad_button_check_pressed(gp_id , gp_start) {
-            // Get next available slot
-            var control_index = find_next_control(input_slots);
-            if (!is_control_in_list(input_slots, gp_id) &amp;&amp; control_index &gt;= 0) {
-                input_slots[control_index] = gp_id;
-                gui_id = input_selectors[control_index];
-                gui_id.is_gamepad = true;
-                gui_id.gamepad_id = gp_id;
+            // Check if we have added this controller already
+            var control_index = is_control_in_list(input_slots, gp_id) 
+            if control_index &gt;= 0 {
+                // Set as ready
+                var gui_id = input_selectors[control_index];
+                if !gui_id.is_ready {
+                    gui_id.is_ready = true;
+                    global.num_gamepad_players++;
+                }
+            } else {
+                // Get next available slot
+                var control_index = find_next_control(input_slots);
+                if control_index &gt;= 0 {
+                    input_slots[control_index] = gp_id;
+                    gui_id = input_selectors[control_index];
+                    gui_id.color = global.color_array[control_index];
+                    gui_id.is_gamepad = true;
+                    gui_id.gamepad_id = gp_id;
+                }  
             }
         } else if gamepad_button_check_pressed(gp_id , gp_select) {
             // Find gamepad in array
             for (control_index = 0; 
                 control_index &lt; array_length_1d(input_slots);  control_index++) {
-                if (input_slots[control_index] == gp_id) {
+                if (input_slots[control_index] == gp_id &amp;&amp; 
+                    !input_selectors[control_index].is_ready) {
                     input_slots[control_index] = empty_input;
                     gui_id = input_selectors[control_index];
                     gui_id.is_gamepad = false;
@@ -123,13 +153,32 @@ if (keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_escape)) {
     // Check which slot is the keyboard
     for (control_index = 0; control_index &lt; array_length_1d(input_slots); 
          control_index++) {
-        if (input_slots[control_index] == keyboard_input) {
+        if (input_slots[control_index] == keyboard_input &amp;&amp; 
+            !input_selectors[control_index].is_ready) {
             input_slots[control_index] = empty_input;
             var gui_id = input_selectors[control_index];
             gui_id.is_keyboard = false;
         }
     }
-}    
+}
+
+var start_game = true;
+var is_one_ready = false;
+for (input_index = 0; input_index &lt; array_length_1d(input_slots); input_index++) {
+    if input_slots[input_index] != empty_input {
+        if !input_selectors[input_index].is_ready {
+            start_game = false;
+            break;
+        } else {
+            is_one_ready = true;
+        }
+    }   
+}
+if is_one_ready &amp;&amp; start_game {
+    if (room_exists(level0)) {
+        room_goto(level0);
+    }
+}
 </string>
           </argument>
         </arguments>

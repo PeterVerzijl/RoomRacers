@@ -49,7 +49,7 @@ for (controller_id = 0; controller_id &lt; global.num_gamepad_players; controlle
     player_id.playercolour = global.color_array[player_count];
 }</code>
   <enableViews>-1</enableViews>
-  <clearViewBackground>-1</clearViewBackground>
+  <clearViewBackground>0</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>0</isSet>
@@ -78,11 +78,7 @@ for (controller_id = 0; controller_id &lt; global.num_gamepad_players; controlle
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
   </backgrounds>
   <views>
-<<<<<<< HEAD
-    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1280" hport="720" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-=======
-    <view visible="-1" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1920" hview="1056" xport="0" yport="0" wport="1920" hport="1056" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
+    <view visible="-1" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1920" hview="1056" xport="0" yport="0" wport="1240" hport="720" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
@@ -727,12 +723,8 @@ for (controller_id = 0; controller_id &lt; global.num_gamepad_players; controlle
     <instance objName="obj_slope_rd" x="1280" y="32" name="inst_BFA64CB1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_end" x="96" y="128" name="inst_12AC2645" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_start" x="128" y="864" name="inst_248C574F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-<<<<<<< HEAD
     <instance objName="obj_time_counter" x="32" y="32" name="inst_72451353" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_trapdoor" x="416" y="736" name="inst_DBEF3DC2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-=======
-<<<<<<< HEAD:rooms/room0.room.gmx
-    <instance objName="obj_controller_manager" x="192" y="64" name="inst_4D1E9D0E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="384" y="192" name="inst_385BD0C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="608" y="256" name="inst_2B92BD31" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="1632" y="672" name="inst_F39BFAE1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -740,9 +732,6 @@ for (controller_id = 0; controller_id &lt; global.num_gamepad_players; controlle
     <instance objName="obj_spikes" x="320" y="736" name="inst_CF7643A0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_spikes" x="256" y="736" name="inst_8CF0BFB0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_spikes" x="128" y="736" name="inst_9E2E6810" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-=======
->>>>>>> origin/master:rooms/level0.room.gmx
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

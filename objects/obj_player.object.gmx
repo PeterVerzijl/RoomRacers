@@ -25,14 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-<<<<<<< HEAD
-            <string>/// Init variables
-=======
             <string>/// Startup values
-is_dead = false;
-death_state = 0;
-
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
 h_speed = 0.0;
 v_speed = 0.0;
 
@@ -71,13 +64,10 @@ key_alt_run = 0;
 
 // Score and Upgrades
 money = 0;
-<<<<<<< HEAD
+
 room_time = 0;
 cumulative_time = 0;
-=======
-
 global.shake = 0; 
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
 </string>
           </argument>
         </arguments>
@@ -100,9 +90,6 @@ global.shake = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-<<<<<<< HEAD
-            <string>/// All movement, collision and death code
-=======
             <string>/// Update code
 // Debug code
 if mouse_button = mb_left {
@@ -136,7 +123,6 @@ if place_meeting(x, y, obj_coin) {
     money++;
 }
 
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
 if (controller_id == -1) {
     left_pressed = keyboard_check(key_left) || keyboard_check(key_alt_left);
     right_pressed = keyboard_check(key_right) || keyboard_check(key_alt_right);
@@ -252,7 +238,6 @@ if wall_stick_counter &gt; 0 {
 if !left_pressed &amp;&amp; !right_pressed &amp;&amp; place_meeting(x, y + 1, obj_block) {
     h_speed -= h_speed * drag;
 }
-<<<<<<< HEAD
 
 // Money Tracker
 if place_meeting(x, y, obj_coin) {
@@ -292,8 +277,6 @@ y = y+64;
 room_time = 0;
 x = obj_start.x;
 y = obj_start.y;
-=======
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
 </string>
           </argument>
         </arguments>
@@ -316,12 +299,7 @@ y = obj_start.y;
         <arguments>
           <argument>
             <kind>1</kind>
-<<<<<<< HEAD
             <string>/// Draw player with correct color and orientation
-=======
-            <string>/// @description Insert description here
-///image_xscale = 1; 
->>>>>>> f851e8f549b5919775a68ec027943152f7944920
 if abs(h_speed) &gt; 0
     draw_sprite_ext(spr_player, 0, x, y, sign(h_speed) , 1, 0, playercolour, 1);
        /* if(is_dead == true) {

@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.shake = 30;
-other.x = obj_start.x;
+            <string>other.x = obj_start.x;
 other.y = obj_start.y;
+global.shake = 30;
 </string>
           </argument>
         </arguments>

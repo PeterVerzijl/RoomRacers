@@ -689,7 +689,6 @@
     <instance objName="obj_coin" x="288" y="832" name="inst_A9BDE727" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="416" y="832" name="inst_EF2086C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="544" y="832" name="inst_4A732B33" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_MoneyCounter" x="32" y="32" name="inst_55AFA3CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="160" y="832" name="inst_7B930884" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="544" y="704" name="inst_8F8F39E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_coin" x="352" y="704" name="inst_A7D1BD4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

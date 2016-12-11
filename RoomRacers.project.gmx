@@ -24,7 +24,10 @@
     <sprite>sprites\spr_blood</sprite>
     <sprite>sprites\spr_coin</sprite>
     <sprite>sprites\spr_spikes</sprite>
-    <sprite>sprites\spr_trapdoor</sprite>
+    <sprite>sprites\spr_trapdoor_open</sprite>
+    <sprite>sprites\spr_trapdoor_closed</sprite>
+    <sprite>sprites\spr_trigger</sprite>
+    <sprite>sprites\spr_cannon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_title_screen</background>
@@ -59,8 +62,11 @@
     <object>objects\obj_start</object>
     <object>objects\obj_time_counter</object>
     <object>objects\obj_fullscreen</object>
-    <object>objects\obj_trapdoor</object>
     <object>objects\obj_hazards</object>
+    <object>objects\obj_trapdoor</object>
+    <object>objects\obj_trapdoor_open</object>
+    <object>objects\obj_trigger</object>
+    <object>objects\obj_cannon</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\title_screen</room>

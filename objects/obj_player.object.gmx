@@ -246,11 +246,6 @@ if place_meeting(x, y, obj_coin) {
     }
     money++;
 }
-
-//trapdoors
-if place_meeting(x, y, obj_trapdoor) {
-y = y+64; 
-}
 </string>
           </argument>
         </arguments>

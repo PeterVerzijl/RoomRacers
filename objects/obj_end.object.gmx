@@ -58,6 +58,49 @@ if (room_exists(room_next(room))) {
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_player">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (num_finished_players == instance_number(obj_player)) {
+    /// Goto next room
+    if (room_exists(room_next(room))) {
+        room_goto_next();
+    }
+} else {
+    var has_finished = false;
+    for (i = 0; i &lt; num_finished_players; i++) {
+        has_finished = (finished_players[i] == other);
+    }
+    if !has_finished {
+        if (num_finished_players == 0) {
+            // Auto advance to the next level after 15 seconds
+            alarm[0] = 15 * room_speed;
+        }
+        finished_players[num_finished_players++] = other;
+        other.room_time = (obj_time_counter.room_timer_s * 1000) + 
+            obj_time_counter.room_timer_ms;
+        other.cumulative_time += other.room_time;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>

@@ -4,7 +4,13 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_jump</sound>
+    <sound>sound\snd_hurt</sound>
+    <sound>sound\bgm_01</sound>
+    <sound>sound\bgm_02</sound>
+    <sound>sound\bgm_03</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_block</sprite>
@@ -15,6 +21,7 @@
     <sprite>sprites\spr_slope_steep_ld</sprite>
     <sprite>sprites\spr_slope_steep_high_ld</sprite>
     <sprite>sprites\spr_door</sprite>
+    <sprite>sprites\spr_start</sprite>
     <sprite>sprites\ui_start</sprite>
     <sprite>sprites\ui_exit</sprite>
     <sprite>sprites\ui_controller</sprite>
@@ -28,6 +35,11 @@
     <sprite>sprites\spr_trapdoor_closed</sprite>
     <sprite>sprites\spr_trigger</sprite>
     <sprite>sprites\spr_cannon</sprite>
+    <sprite>sprites\spr_spikes_up</sprite>
+    <sprite>sprites\spr_spikes_down</sprite>
+    <sprite>sprites\spr_spikes_left</sprite>
+    <sprite>sprites\spr_spikes_right</sprite>
+    <sprite>sprites\spr_trapdoor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_title_screen</background>
@@ -38,6 +50,8 @@
   <scripts name="scripts">
     <script>scripts\find_next_control.gml</script>
     <script>scripts\is_control_in_list.gml</script>
+    <script>scripts\sleep.gml</script>
+    <script>scripts\script3.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -55,7 +69,6 @@
     <object>objects\obj_blood</object>
     <object>objects\obj_blood_controller</object>
     <object>objects\obj_BloodController</object>
-    <object>objects\obj_coin</object>
     <object>objects\obj_end</object>
     <object>objects\obj_player_ui</object>
     <object>objects\obj_spikes</object>
@@ -67,12 +80,18 @@
     <object>objects\obj_trapdoor_open</object>
     <object>objects\obj_trigger</object>
     <object>objects\obj_cannon</object>
+    <object>objects\obj_game_manager</object>
+    <object>objects\obj_trapdoor</object>
+    <object>objects\obj_hazards</object>
+    <object>objects\obj_highscore_drawer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\title_screen</room>
     <room>rooms\lobby_room</room>
     <room>rooms\level0</room>
     <room>rooms\level1</room>
+    <room>rooms\level2</room>
+    <room>rooms\rm_highscore</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

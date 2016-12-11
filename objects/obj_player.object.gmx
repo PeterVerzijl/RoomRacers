@@ -3,7 +3,7 @@
   <spriteName>spr_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,15 +26,19 @@
           <argument>
             <kind>1</kind>
             <string>/// Startup values
+is_hurt = false;
+should_slow = false;
+punish_duration = room_speed * 2;
+
 h_speed = 0.0;
 v_speed = 0.0;
 
 max_speed = 5.0;
-run_max_speed = 7.5;
+run_max_speed = 10.0;
 
-drag = 0.25;
+drag = 0.35;
 acceleration = 0.5;
-run_acceleration = 1.5;
+run_acceleration = 2.0;
 
 grav = 0.7;
 
@@ -73,6 +77,54 @@ global.shake = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reset should_slow
+should_slow = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reset is_hurt
+is_hurt = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -105,35 +157,27 @@ view_xview += random_range(-global.shake, global.shake);
 view_yview += random_range(-global.shake, global.shake); 
 global.shake *= 0.93; 
 
-// Load next room upon door hit
-if place_meeting(x, y, obj_end) {
-    if room_exists(room_next(room)) {
-        room = room_next(room);
-        x = obj_start.x;
-        y = obj_start.y;
-        room_goto_next();
-    }
-}
-
-// Money Tracker
-if place_meeting(x, y, obj_coin) {
-    with instance_place(x, y, obj_coin) {
-        instance_destroy();
-    }
-    money++;
-}
-
 if (controller_id == -1) {
     left_pressed = keyboard_check(key_left) || keyboard_check(key_alt_left);
     right_pressed = keyboard_check(key_right) || keyboard_check(key_alt_right);
     jump_pressed = keyboard_check_pressed(key_jump) || keyboard_check_pressed(key_alt_jump);
     run_pressed = keyboard_check(key_run) || keyboard_check(key_alt_run);
 } else if controller_id &gt;= 0 {
-    left_pressed = gamepad_button_check(controller_id, key_left);
-    right_pressed = gamepad_button_check(controller_id, key_right);
+    // Analog
+    var x_axis = gamepad_axis_value(controller_id, gp_axislh);
+
+    left_pressed = gamepad_button_check(controller_id, key_left) || (x_axis &lt; -0.3);
+    right_pressed = gamepad_button_check(controller_id, key_right) || (x_axis &gt; 0.3);
     jump_pressed = gamepad_button_check_pressed(controller_id, key_jump);
-    run_pressed = gamepad_button_check(controller_id, key_run);
+    run_pressed = gamepad_button_check(controller_id, key_run) || 
+                    gamepad_button_check(controller_id, gp_shoulderrb);
 }
+
+// Exit the input / movement on hurting
+if is_hurt {
+    exit;
+};
+
 var has_jumped = false;
 
 // Check if we should stick to the wall
@@ -166,23 +210,31 @@ if jump_pressed &amp;&amp; !has_jumped {
     has_jumped = true;
     if place_meeting(x, y + 1, obj_block) {
         ay = -jump_speed;
+        audio_play_sound(snd_jump, 1, 0);
     } else {
-        if place_meeting(x + 1, y, obj_block) {
+        if place_meeting(x + 1, y, obj_block) &amp;&amp; left_pressed {
             ay -= wall_jump_v;
             ax -= wall_jump_h;
             wall_stick = false;
             wall_stick_counter = 0;
-        } else if place_meeting(x - 1, y, obj_block) {
+            audio_play_sound(snd_jump, 1, 0);
+        } else if place_meeting(x - 1, y, obj_block) &amp;&amp; right_pressed {
             ay-= wall_jump_v;
             ax += wall_jump_h;
             wall_stick = false;
             wall_stick_counter = 0;
+            audio_play_sound(snd_jump, 1, 0);
         }
     }
 }
 
 if !place_meeting(x, y + 1, obj_block) {
-    ay += grav;
+    if place_meeting(x + 1, y, obj_block) || 
+        place_meeting(x - 1, y, obj_block) {
+        ay += grav/2;
+    } else {
+        ay += grav;
+    }
 } else {
     // Exit the wall stick after we landed
     wall_stick_counter = 0;
@@ -197,6 +249,10 @@ if key_run {
     h_speed = sign(h_speed) * min(abs(h_speed), run_max_speed);
 } else {
     h_speed = sign(h_speed) * min(abs(h_speed), max_speed);
+}
+// Decrease speed when hit by spikes
+if should_slow {
+    h_speed = sign(h_speed) * min(abs(h_speed), max_speed / 2);
 }
 
 // Updating
@@ -235,16 +291,8 @@ if wall_stick_counter &gt; 0 {
     wall_stick = false;
 }
 
-if !left_pressed &amp;&amp; !right_pressed &amp;&amp; place_meeting(x, y + 1, obj_block) {
+if !left_pressed &amp;&amp; !right_pressed {
     h_speed -= h_speed * drag;
-}
-
-// Money Tracker
-if place_meeting(x, y, obj_coin) {
-    with instance_place(x, y, obj_coin) {
-        instance_destroy();
-    }
-    money++;
 }
 </string>
           </argument>
@@ -270,8 +318,10 @@ if place_meeting(x, y, obj_coin) {
             <kind>1</kind>
             <string>/// Reset player to start position
 room_time = 0;
-x = obj_start.x;
-y = obj_start.y;
+if instance_exists(obj_start) {
+    x = obj_start.x;
+    y = obj_start.y;
+}
 </string>
           </argument>
         </arguments>
@@ -295,20 +345,23 @@ y = obj_start.y;
           <argument>
             <kind>1</kind>
             <string>/// Draw player with correct color and orientation
+var x_pos = x;
+var y_pos = y;
+// Jiggle player on hit
+if (is_hurt) {
+    x_pos = x + random_range(-1, 1);
+    y_pos = y + random_range(-1, 1);
+}
+var alpha = 1;
+if (should_slow) {
+    if delta_time % 4 {
+        alpha = !alpha;
+    }
+}
 if abs(h_speed) &gt; 0
-    draw_sprite_ext(spr_player, 0, x, y, sign(h_speed) , 1, 0, playercolour, 1);
-       /* if(is_dead == true) {
-            if (image_xscale &lt; 5){
-                image_xscale += 0.1;
-            } */
+    draw_sprite_ext(spr_player, 0, x_pos, y_pos, sign(h_speed) , 1, 0, playercolour, alpha);
 else {
-    draw_sprite_ext(spr_player, 0, x, y, 1, 1, 0, playercolour, 1);
-
-   /* if(is_dead == true) {
-            if (image_xscale &lt; 5){
-                image_xscale += 0.1;
-                } */ 
-            //}
+    draw_sprite_ext(spr_player, 0, x_pos, y_pos, 1, 1, 0, playercolour, alpha);
 }
 </string>
           </argument>

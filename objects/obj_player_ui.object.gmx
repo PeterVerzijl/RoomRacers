@@ -51,8 +51,10 @@
             <string>var x_pos = x;
 var y_pos = y;
 
+var s = round(player_id.cumulative_time / 1000.0);
+var ms = round(player_id.cumulative_time % 1000.0);
 var money_text = "Money 1: " + string(player_id.money);
-var time_text = "Total Time: " + string(player_id.cumulative_time);
+var time_text = "Total Time: " + string(s) + ":" + string(ms);
 var t1h = string_height(money_text);
 var t2h = string_height(time_text);
 var max_width = max(string_width(money_text), string_width(time_text));
